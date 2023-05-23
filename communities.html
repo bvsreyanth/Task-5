@@ -1,0 +1,1258 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travel Website</title>
+    <!-- Boxicons -->
+    <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
+
+    <!-- Swiper CSS -->
+    <link rel="stylesheet" href="./assets/css/swiper-bundle.min.css">
+    <!--fontawesome   -->
+    <script src="https://kit.fontawesome.com/dc1ffc8683.js" crossorigin="anonymous"></script>
+
+    <!-- font awesome cdn link  -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
+        integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+</head>
+
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;600;700&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Mukta:wght@700&family=Poppins&display=swap');
+
+    :root {
+        --Black: #2e1b63;
+        --Black: #063970;
+        --White: #ffffff;
+        --Gold: #FFD700;
+    }
+
+    * {
+
+        font-family: 'Poppins', sans-serif;
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        text-transform: capitalize;
+        outline: none;
+        border: none;
+        text-decoration: none;
+        transition: all .2s linear;
+    }
+
+    *::selection {
+        background: var(--Black);
+        color: #fff;
+    }
+
+    html {
+        font-size: 62.5%;
+        overflow-x: hidden;
+        scroll-padding-top: 6rem;
+        scroll-behavior: smooth;
+    }
+
+    section {
+        padding: 2rem 9%;
+    }
+
+    .heading {
+        text-align: center;
+        padding: 2.5rem 0
+    }
+
+    .heading span {
+        font-size: 3.5rem;
+        background: rgba(238, 238, 238, .2);
+        color: var(--Black);
+        border-radius: .5rem;
+        padding: .2rem 1rem;
+    }
+
+    .heading span.space {
+        background: none;
+    }
+
+    .btn {
+        display: inline-block;
+        margin-top: 1rem;
+        background: var(--Black);
+        color: #fff;
+        padding: .8rem 3rem;
+        border: .2rem solid var(--Black);
+        cursor: pointer;
+        font-size: 1.7rem;
+    }
+
+    .btn:hover {
+        background: rgba(255, 165, 0, .2);
+        color: var(--Black);
+    }
+
+    header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        background: var(--Black);
+        z-index: 1000;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 2rem 9%;
+    }
+
+    header .logo {
+        font-size: 2.5rem;
+        font-weight: bolder;
+        color: #fff;
+        text-transform: uppercase;
+    }
+
+    header .logo span {
+        color: var(--White);
+    }
+
+    header .navbar a {
+        color: #fff;
+        font-size: 2rem;
+        margin: 0 .8rem;
+    }
+
+    header .navbar a:hover {
+        color: var(--Black);
+    }
+
+    header .icons i {
+        font-size: 2.5rem;
+        color: #fff;
+        cursor: pointer;
+        margin-right: 2rem;
+    }
+
+    header .icons i:hover {
+        color: var(--Black);
+    }
+
+    header .search-bar-container {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        padding: 1.5rem 2rem;
+        background: #333;
+        border-top: .1rem solid rgba(255, 255, 255, .2);
+        display: flex;
+        align-items: center;
+        z-index: 1001;
+        clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+    }
+
+    header .search-bar-container.active {
+        clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+    }
+
+    header .search-bar-container #search-bar {
+        width: 100%;
+        padding: 1rem;
+        text-transform: none;
+        color: #333;
+        font-size: 1.7rem;
+        border-radius: .5rem;
+    }
+
+    header .search-bar-container label {
+        color: #fff;
+        cursor: pointer;
+        font-size: 3rem;
+        margin-left: 1.5rem;
+    }
+
+    header .search-bar-container label:hover {
+        color: var(--Black);
+    }
+
+    .login-form-container {
+        position: fixed;
+        top: -120%;
+        left: 0;
+        z-index: 10000;
+        min-height: 100vh;
+        width: 100%;
+        background: rgba(0, 0, 0, .7);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .login-form-container.active {
+        top: 0;
+    }
+
+    .login-form-container form {
+        margin: 2rem;
+        padding: 1.5rem 2rem;
+        border-radius: .5rem;
+        background: #fff;
+        width: 50rem;
+    }
+
+    .login-form-container form h3 {
+        font-size: 3rem;
+        color: #444;
+        text-transform: uppercase;
+        text-align: center;
+        padding: 1rem 0;
+    }
+
+    .login-form-container form .box {
+        width: 100%;
+        padding: 1rem;
+        font-size: 1.7rem;
+        color: #333;
+        margin: .6rem 0;
+        border: .1rem solid rgba(0, 0, 0, .3);
+        text-transform: none;
+    }
+
+    .login-form-container form .box:focus {
+        border-color: var(--Black);
+        ;
+    }
+
+    .login-form-container form #remember {
+        margin: 2rem 0;
+    }
+
+    .login-form-container form label {
+        font-size: 1.5rem;
+    }
+
+    .login-form-container form .btn {
+        display: block;
+        width: 100%;
+    }
+
+    .login-form-container form p {
+        padding: .5rem 0;
+        font-size: 1.5rem;
+        color: #666;
+    }
+
+    .login-form-container form p a {
+        color: var(--Black);
+    }
+
+    .login-form-container form p a:hover {
+        color: #333;
+        text-decoration: underline;
+    }
+
+    .login-form-container #form-close {
+        position: absolute;
+        top: 2rem;
+        right: 3rem;
+        font-size: 5rem;
+        color: #fff;
+        cursor: pointer;
+    }
+
+    #menu-bar {
+        color: #fff;
+        border: .1rem solid #fff;
+        border-radius: .5rem;
+        font-size: 3rem;
+        padding: .5rem 1.2rem;
+        cursor: pointer;
+        display: none;
+    }
+
+    .head-navbar {
+        width: 100vw;
+    }
+
+    .home {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-flow: column;
+        position: relative;
+        z-index: 0;
+    }
+
+    .home .content {
+        text-align: center;
+    }
+
+    .home .content h3 {
+        font-size: 4.5rem;
+        color: #fff;
+        text-transform: uppercase;
+        text-shadow: 0 .3rem .5rem rgba(0, 0, 0, .1);
+    }
+
+    .home .content p {
+        font-size: 2.5rem;
+        color: #fff;
+        padding: .5rem 0;
+    }
+
+    .home .video-container video {
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: -1;
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+    }
+
+    h1 {
+        text-align: center;
+        padding-bottom: 30px;
+        font-size: 2.5rem;
+    }
+
+    .col-sm-4 {
+        padding-bottom: 31px;
+    }
+
+    p {
+        padding: 50px 10px 10px 10px;
+    }
+
+    h5 {
+        font-size: 1.27rem;
+    }
+
+    small {
+        font-size: 13px;
+    }
+
+    .users-feedback {
+        padding: 20px 0
+    }
+
+    .user-review {
+        text-align: center;
+        box-shadow: 0 0 10px 0 rgba(0, 0, 100, 0.2);
+        padding-bottom: 50px;
+    }
+
+    .user-review p {
+        padding: 50px 10px 10px 10px;
+        font-size: 18px;
+    }
+
+    .users-feedback img {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        position: relative;
+        margin: -31px 0 0 48%;
+    }
+
+    .home .controls {
+        padding: 1rem;
+        border-radius: 5rem;
+        background: var(--Black);
+        position: relative;
+        top: 10rem;
+    }
+
+    .home .controls .vid-btn {
+        height: 2rem;
+        width: 2rem;
+        display: inline-block;
+        border-radius: 50%;
+        background: #fff;
+        cursor: pointer;
+        margin: 0 .5rem;
+    }
+
+
+
+    .book .row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1.5rem;
+        align-items: center;
+    }
+
+    .book .row .image {
+        flex: 1 1 40rem;
+    }
+
+    .book .row .image img {
+        width: 100%;
+        border-radius: 20px;
+    }
+
+    .book .row form {
+        flex: 1 1 40rem;
+        padding: 2rem;
+        box-shadow: 0 1rem 2rem rgba(0, 0, 0, .1);
+        border-radius: .5rem;
+    }
+
+    .book .row form .inputBox {
+        padding: .5rem 0;
+    }
+
+    .book .row form .inputBox input {
+        width: 100%;
+        padding: 1rem;
+        border: .1rem solid rgba(0, 0, 0, .1);
+        font-size: 1.7rem;
+        color: #333;
+        text-transform: none;
+    }
+
+    .book .row form .inputBox h3 {
+        font-size: 2rem;
+        padding: 1rem 0;
+        color: #666;
+    }
+
+    .packages .box-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 2rem;
+    }
+
+    .packages .box-container .box {
+        flex: 1 1 30rem;
+        border-radius: .5rem;
+        overflow: hidden;
+        box-shadow: 0 1rem 2rem rgba(0, 0, 0, .1);
+    }
+
+    .packages .box-container .box img {
+        height: 25rem;
+        width: 100%;
+        object-fit: cover;
+    }
+
+    .packages .box-container .box .content {
+        padding: 2rem;
+    }
+
+    .packages .box-container .box .content h3 {
+        font-size: 2rem;
+        color: #333;
+    }
+
+
+    .packages .box-container .box .content h3 i {
+        color: var(--Black);
+    }
+
+    .packages .box-container .box .content p {
+        font-size: 1.7rem;
+        color: #666;
+        padding: 1rem 0;
+    }
+
+    .packages .box-container .box .content .stars i {
+        font-size: 1.7rem;
+        color: var(--Gold);
+    }
+
+    .packages .box-container .box .content .price {
+        font-size: 2rem;
+        color: #333;
+        padding-top: 1rem;
+    }
+
+    .packages .box-container .box .content .price span {
+        color: #666;
+        font-size: 1.5rem;
+        text-decoration: line-through;
+    }
+
+    .services .box-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1.5rem;
+    }
+
+    .services .box-container .box {
+        flex: 1 1 30rem;
+        border-radius: .5rem;
+        padding: 1rem;
+        text-align: center;
+    }
+
+    .services .box-container .box i {
+        padding: 1rem;
+        font-size: 5rem;
+        color: var(--Black);
+    }
+
+    .services .box-container .box h3 {
+        font-size: 2.5rem;
+        color: #333;
+    }
+
+    .services .box-container .box p {
+        font-size: 1.5rem;
+        color: #666;
+        padding: 1rem 0;
+    }
+
+    .services .box-container .box:hover {
+        box-shadow: 0 1rem 2rem rgba(0, 0, 0, .1);
+    }
+
+    .gallery .box-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1.5rem;
+    }
+
+    .gallery .box-container .box {
+        overflow: hidden;
+        box-shadow: 0 1rem 2rem rgba(0, 0, 0, .1);
+        border: 1rem solid #fff;
+        border-radius: .5rem;
+        flex: 1 1 30rem;
+        height: 25rem;
+        position: relative;
+    }
+
+    .gallery .box-container .box img {
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+    }
+
+    .gallery .box-container .box .content {
+        position: absolute;
+        top: -100%;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        text-align: center;
+        background: rgba(0, 0, 0, .7);
+        padding: 2rem;
+        padding-top: 5rem;
+    }
+
+    .gallery .box-container .box:hover .content {
+        top: 0;
+    }
+
+    .gallery .box-container .box .content h3 {
+        font-size: 2.5rem;
+        color: var(--Black);
+    }
+
+    .gallery .box-container .box .content p {
+        font-size: 1.5rem;
+        color: #eee;
+        padding: .5rem 0;
+    }
+
+    .review .review-slider {
+        padding-bottom: 2rem;
+    }
+
+    .review .box {
+        padding: 2rem;
+        text-align: center;
+        box-shadow: 0 1rem 2rem rgba(0, 0, 0, .1);
+        border-radius: .5rem;
+    }
+
+    .review .box img {
+        height: 13rem;
+        width: 13rem;
+        border-radius: 50%;
+        object-fit: cover;
+        margin-bottom: 1rem;
+    }
+
+    .review .box h3 {
+        color: #333;
+        font-size: 2.5rem;
+    }
+
+    .review .box p {
+        color: #666;
+        font-size: 1.5rem;
+        padding: 1rem 0;
+    }
+
+    .review .box .stars i {
+        color: var(--Black);
+        font-size: 1.7rem;
+    }
+
+    .contact .row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1.5rem;
+        align-items: center;
+    }
+
+    .contact .row .image {
+        flex: 1 1 35rem;
+    }
+
+    .contact .row .image img {
+        width: 100%;
+    }
+
+    .contact .row form {
+        flex: 1 1 50rem;
+        padding: 2rem;
+        box-shadow: 0 1rem 2rem rgba(0, 0, 0, .1);
+        border-radius: .5rem;
+    }
+
+    .contact .row form .inputBox {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+
+    .contact .row form .inputBox input,
+    .contact .row form textarea {
+        width: 49%;
+        margin: 1rem 0;
+        padding: 1rem;
+        font-size: 1.7rem;
+        color: #333;
+        background: #f7f7f7;
+        text-transform: none;
+    }
+
+    .contact .row form textarea {
+        height: 15rem;
+        resize: none;
+        width: 100%;
+    }
+
+    .footer {
+        background: var(--Black);
+    }
+
+    .footer .box-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1.5rem;
+    }
+
+    .footer .box-container .box {
+        padding: 1rem 0;
+        flex: 1 1 25rem;
+    }
+
+    .footer .box-container .box h3 {
+        font-size: 2.5rem;
+        padding: .7rem 0;
+        color: #fff;
+    }
+
+    .footer .box-container .box p {
+        font-size: 1.5rem;
+        padding: .7rem 0;
+        color: #eee;
+    }
+
+    .footer .box-container .box a {
+        display: block;
+        font-size: 1.5rem;
+        padding: .7rem 0;
+        color: #eee;
+    }
+
+    .footer .box-container .box a:hover {
+        color: var(#30205a);
+        text-decoration: underline;
+    }
+
+    .footer .credit {
+        text-align: center;
+        padding: 2rem 1rem;
+        margin-top: 1rem;
+        font-size: 2rem;
+        font-weight: normal;
+        color: #fff;
+        border-top: .1rem solid rgba(255, 255, 255, .2);
+    }
+
+    .footer .credit span {
+        color: var(--Black);
+    }
+
+
+    /* custom scroll bar */
+    ::-webkit-scrollbar-track {
+        -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+        box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+        border-radius: 10px;
+        background-color: #F5F5F5;
+    }
+
+    ::-webkit-scrollbar {
+        width: 10px;
+        background-color: #F5F5F5;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        border-radius: 2px;
+        -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
+        box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
+        background-color: rgb(229, 216, 216);
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    /* media queries  */
+
+    @media (max-width:1200px) {
+
+        html {
+            font-size: 55%;
+        }
+
+    }
+
+    @media (max-width:991px) {
+
+        header {
+            padding: 2rem;
+        }
+
+        section {
+            padding: 2rem;
+        }
+
+    }
+
+    @media (max-width:768px) {
+
+        #menu-bar {
+            display: initial;
+        }
+
+        header .navbar {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            left: 0;
+            background: #333;
+            border-top: .1rem solid rgba(255, 255, 255, .2);
+            padding: 1rem 2rem;
+            clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+        }
+
+        header .navbar.active {
+            clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+        }
+
+        header .navbar a {
+            display: block;
+            border-radius: .5rem;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            background: #222;
+        }
+
+    }
+
+    @media (max-width: 450px) {
+
+        html {
+            font-size: 50%;
+        }
+
+        .heading span {
+            font-size: 2.5rem;
+        }
+
+        .contact .row form .inputBox input {
+            width: 100%;
+        }
+
+    }
+</style>
+
+<body>
+
+    <header class="head-navbar">
+
+        <div id="menu-bar" class="fas fa-bars"></div>
+
+        <a href="#" class="logo"><span>Travel Tourest</span>✈️</i></a>
+
+        <nav class="navbar">
+            <a href="#book">book</a>
+            <a href="#packages">packages</a>
+            <a href="places.html">Popular Packages</a>
+            <a href="#contact">contact</a>
+        </nav>
+
+        <div class="icons">
+            <i class="fas fa-search" id="search-btn"></i>
+            <i class="fas fa-user" id="login-btn"></i>
+        </div>
+        <form action="" class="search-bar-container">
+            <input type="search" id="search-bar" placeholder="search here...">
+            <label for="search-bar" class="fas fa-search"></label>
+        </form>
+    </header>
+
+    <div class="login-form-container">
+
+        <i class="fas fa-times" id="form-close"></i>
+
+        <form action="">
+            <h3>login</h3>
+            <input type="email" class="box" placeholder="enter your email">
+            <input type="password" class="box" placeholder="enter your password">
+            <input type="submit" value="login now" class="btn">
+            <input type="checkbox" id="remember">
+            <label for="remember">Remember Me</label>
+            <p>forget password? <a href="#">Click Here</a></p>
+            <p>don't have and account? <a href="#">Register now</a></p>
+        </form>
+
+    </div>
+
+
+    <section class="home" id="home">
+
+        <div class="content">
+            <h3 style="color: black;"> DISCOVER YOUR</h3>
+            <p style="color: black;">NEXT AMAZING TRAVEL EXPERIENCE✈️</p>
+            <a href="#gallery" class="btn">PICK YOURE 2023 ADVENTURE</a>
+        </div>
+
+        <div class="controls">
+            <span class="vid-btn active" data-src="images\vid-1t.mp4"></span>
+            <span class="vid-btn" data-src="images/vid-2t.mp4"></span>
+        </div>
+        <div class="video-container">
+            <video src="images/vid-1.mp4" id="video-slider" loop autoplay muted></video>
+        </div>
+
+    </section>
+
+    <section class="book" id="book">
+
+        <h1 class="heading">
+            <span>B</span>
+            <span>O</span>
+            <span>O</span>
+            <span>K</span>
+            <span class="space"></span>
+            <span>N</span>
+            <span>O</span>
+            <span>W</span>
+        </h1>
+
+        <div class="row">
+
+            <div class="image">
+                <img src="images\nepyatra.jpg" alt="">
+            </div>
+
+            <form action="" onsubmit="return validateForm()">
+                <div class="inputBox">
+                    <h3>Your Destination 🌍 </h3>
+                    <input id="destination" type="text" placeholder="Place Name" required>
+                </div>
+                <div class="inputBox">
+                    <h3>Your Trip Members 🧑🏼‍🤝‍🧑🏼</h3>
+                    <input id="guests" type="number" placeholder="Number Of Guests" required>
+                </div>
+                <div class="inputBox">
+                    <h3>Arrivals ↘️</h3>
+                    <input id="arrivalDate" type="date" required>
+                </div>
+                <div class="inputBox">
+                    <h3>Leaving ↗️</h3>
+                    <input id="departureDate" type="date" required>
+                </div>
+                <input type="submit" class="btn" value="Book Now">
+            </form>
+        </div>
+
+    </section>
+
+
+    <section class="packages" id="packages">
+
+        <h1 class="heading">
+            <span>D</span>
+            <span>E</span>
+            <span>S</span>
+            <span>T</span>
+            <span>I</span>
+            <span>N</span>
+            <span>A</span>
+            <span>T</span>
+            <span>I</span>
+            <span>O</span>
+            <span>N</span>
+        </h1>
+
+        <div class="box-container">
+
+            <div class="box">
+                <img src="images\Newyork.jpg" alt="">
+                <div class="content">
+                    <h3> <i class="fas fa-map-marker-alt"></i> New York </h3>
+                    <p>Get amazing view of New York. New York is known for its towering skyscrapers</p>
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="far fa-star"></i>
+                    </div>
+                    <div class="price"> $2,057.00 <span>$3,000.00</span> </div>
+                    <a href="#book" class="btn">Book Now</a>
+                </div>
+            </div>
+
+            <div class="box">
+                <img src="images/Zanskar Valley.jpg" alt="">
+                <div class="content">
+                    <h3> <i class="fas fa-map-marker-alt"></i> Zanskar Valley </h3>
+                    <p>Zanskar Valley is a fantastic option for a Getaway amidst snow-capped peaks and breathtaking
+                        natural beauty.</p>
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="far fa-star"></i>
+                    </div>
+                    <div class="price"> $6302.71 <span>$7000.00</span> </div>
+                    <a href="#book" class="btn">book now</a>
+                </div>
+            </div>
+
+            <div class="box">
+                <img src="images/kathmandu.jpg" alt="">
+                <div class="content">
+                    <h3> <i class="fas fa-map-marker-alt"></i> Kathmandu </h3>
+                    <p>Kathmandu is famous for its religious monuments across the city.</p>
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="far fa-star"></i>
+                    </div>
+                    <div class="price"> $190.00 <span>$250.00</span> </div>
+                    <a href="#book" class="btn">book now</a>
+                </div>
+            </div>
+
+            <div class="box">
+                <img src="images/janakpur.jpg" alt="">
+                <div class="content">
+                    <h3> <i class="fas fa-map-marker-alt"></i> Janakpur </h3>
+                    <p>Jay Shree Ram ! Want to know, where RAM got married , the birth place of SITA</p>
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="far fa-star"></i>
+                    </div>
+                    <div class="price"> $380.00 <span>$420.00</span> </div>
+                    <a href="#book" class="btn">book now</a>
+                </div>
+            </div>
+
+            <div class="box">
+                <img src="images/lumbini.jpg" alt="">
+                <div class="content">
+                    <h3> <i class="fas fa-map-marker-alt"></i> Lumbini </h3>
+                    <p>Birth Place of Light of Asia aka LORD BUDDHA. Want some peace ? Visitr here.</p>
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="far fa-star"></i>
+                    </div>
+                    <div class="price"> $250.00 <span>$620.00</span> </div>
+                    <a href="#book" class="btn">book now</a>
+                </div>
+            </div>
+
+            <div class="box">
+                <img src="images/everest.jpg" alt="">
+                <div class="content">
+                    <h3> <i class="fas fa-map-marker-alt"></i> Everest </h3>
+                    <p>Want to climb higher than your dreams? Never forget to visit worlds highest peak!</p>
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="far fa-star"></i>
+
+                    </div>
+                    <div class="price"> $360.00 <span>$420.00</span> </div>
+                    <a href="#book" class="btn">book now</a>
+                </div>
+            </div>
+
+        </div>
+
+    </section>
+
+    <section class="gallery" id="gallery">
+
+        <h1 class="heading">
+            <span>C</span>
+            <span>R</span>
+            <span>U</span>
+            <span>I</span>
+            <span>S</span>
+            <span>E</span>
+            <span>S</span>
+        </h1>
+
+
+        <div class="box-container">
+
+            <div class="box">
+                <img src="images/g-1.png" alt="">
+                <div class="content">
+                    <h3>Organ National Monument</h3>
+                    <p>Organ Mountains range from its highest point, Organ Needle</p>
+                    <a href="https://en.wikipedia.org/wiki/Organ_Mountains%E2%80%93Desert_Peaks_National_Monument"
+                        target="_blank" class="btn">See More</a>
+                </div>
+            </div>
+            <div class="box">
+                <img src="images/g-2.jpg" alt="">
+                <div class="content">
+                    <h3>Scottsdale, Arizona</h3>
+                    <p>During the summer, it can be too hot to explore the striking desert landscape surrounding
+                        Scottsdale, Arizona.
+                    </p>
+                    <a href="https://en.wikipedia.org/wiki/Scottsdale,_Arizona" target="_blank" class="btn">See More</a>
+                </div>
+            </div>
+            <div class="box">
+                <img src="images/g-3.jpg" alt="">
+                <div class="content">
+                    <h3>U.S. Virgin Islands</h3>
+                    <p>U.S. Virgin Islands are a group of Caribbean islands. But they all boast weather, beautiful
+                        scenery and plenty of beaches.</p>
+                    <a href="https://en.wikipedia.org/wiki/United_States_Virgin_Islands" target="_blank" class="btn">See
+                        More</a>
+                </div>
+            </div>
+            <div class="box">
+                <img src="images/g-4.jpg" alt="">
+                <div class="content">
+                    <h3>Moloka’i, Hawai’i</h3>
+                    <p>Beautiful view of Halawa Beach Park on the remote island of Moloka'i, Hawaii.</p>
+                    <a href="https://en.wikipedia.org/wiki/Molokai" target="_blank" class="btn">See More</a>
+                </div>
+            </div>
+            <div class="box">
+                <img src="images/g-5.jpg" alt="">
+                <div class="content">
+                    <h3>High-Flying Experiences</h3>
+                    <p>Glow of the balloons as dusk sets in at the festival grounds.</p>
+                    <a href="#" target="_blank" class="btn">See More</a>
+                </div>
+            </div>
+            <div class="box">
+                <img src="images/g-6.jpg" alt="">
+                <div class="content">
+                    <h3>Desert Sunflower</h3>
+                    <p>Look for these bright yellow blooms across Arizona and southern California..</p>
+                    <a href="#https://en.wikipedia.org/wiki/Geraea_canescens" target="_blank" class="btn">See More</a>
+                </div>
+            </div>
+            <div class="box">
+                <img src="images/g-7.jpg" alt="">
+                <div class="content">
+                    <h3>Tennessee’s Waterfalls</h3>
+                    <p>Looking down one of the cascades of water at Fall Creek Falls State Park</p>
+                    <a href="https://tnstateparks.com/about/special-interest/waterfalls#:~:text=Many%20of%20these%20waterfall%20sites,or%20near%20Tennessee%20State%20Parks."
+                        target="_blank" class="btn">See More</a>
+                </div>
+            </div>
+            <div class="box">
+                <img src="images/g-8.jpg" alt="">
+                <div class="content">
+                    <h3>Nashville: Music City</h3>
+                    <p>A live concert during a street festival on Nashville’s Lower Broadway, also known as the Honky
+                        Tonk Highway</p>
+                    <a href="https://en.wikipedia.org/wiki/Nashville,_Tennessee" target="_blank" class="btn">See
+                        More</a>
+                </div>
+            </div>
+            <div class="box gallery__card">
+                <img src="images/g-9.jpg" alt="">
+                <div class="content">
+                    <h3>Musical Stops</h3>
+                    <p>A statue of Dolly Parton in her hometown of Sevierville, just a short distance from Dollywood,
+                        her Pigeon Forge theme park
+                    </p>
+                    <a href="#" target="_blank" class="btn">See More</a>
+                </div>
+            </div>
+
+        </div>
+
+    </section>
+
+    <section class="contact" id="contact">
+
+        <h1 class="heading">
+            <span>C</span>
+            <span>O</span>
+            <span>N</span>
+            <span>T</span>
+            <span>A</span>
+            <span>C</span>
+            <span>T</span>
+        </h1>
+
+        <div class="row">
+
+            <div class="image">
+                <img src="images/mayadidi.png" alt="img" style="border-radius: 20px;">
+            </div>
+
+            <form action="">
+                <div class="inputBox">
+                    <input id="name" type="text" placeholder="Name" required>
+                    <input id="email" type="email" placeholder="Email" required>
+                </div>
+                <div class="inputBox">
+                    <input id="num" type="number" placeholder="Number" required>
+                    <input id="sub" type="text" placeholder="Subject" required>
+                </div>
+                <textarea placeholder="message" name="" id="" cols="30" rows="10"></textarea>
+                <input id="mes" type="submit" onclick="myFunction()" class="btn" value="send message" required>
+            </form>
+
+        </div>
+
+    </section>
+
+    <section class="users-feedback">
+        <h1 class="heading">
+            <span>U</span>
+            <span>S</span>
+            <span>E</span>
+            <span>R</span>
+            <span></span>
+            <span>R</span>
+            <span>E</span>
+            <span>V</span>
+            <span>I</span>
+            <span>E</span>
+            <span>W</span>
+        </h1>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="user-review">
+                        <p class="p1">I went Manali last year. Best ever memories in my life, Thanks for Travel Tourest
+                            to
+                            make this.</p>
+                        <h5>Venugopal Venkatesan</h5>
+                        <small>Los Angeles</small>
+                    </div>
+                    <img src="images\user1.png">
+                </div>
+                <div class="col-sm-4">
+                    <div class="user-review">
+                        <p class="p2">I went Nepal last year. Best ever memories in my life, Thanks for Travel Tourest
+                            to
+                            make this.</p>
+                        <h5>Ram Kumar</h5>
+                        <small>NEPAL</small>
+                    </div>
+                    <img src="images\user2.png" />
+                </div>
+                <div class="col-sm-4">
+                    <div class="user-review">
+                        <p class="p3">I went Los Angeles last year. Best ever memories in my life, Thanks for Travel
+                            Tourest to
+                            make this.</p>
+                        <h5>Jenifer Lopes</h5>
+                        <small>Los Angeles</small>
+                    </div>
+                    <img src="images/user3.png" />
+                </div>
+            </div>
+        </div>
+        <section class="footer">
+
+            <div class="box-container">
+                <div class="box">
+                    <h3>Travel Website</h3>
+
+                </div>
+
+                <div class="box">
+                    <h3>Our Offices🏢</h3>
+                    <a href="https://www.google.com/maps/@17.4643068,78.5092769,15z">Maps</a>
+                    <a href="https://en.wikipedia.org/wiki/India">India</a>
+                    <a href="https://tourism.gov.in/">Ministry of Tourism</a>
+
+                </div>
+                <div class="box">
+                    <h3>Quick links 📎</h3>
+                    <a href="#home">home</a>
+                    <a href="#book">Book</a>
+                    <a href="">Popular Packages</a>
+                    <a href="#contact">Contact</a>
+
+                </div>
+                <div class="box">
+                    <h3>Follow us 🌏</h3>
+                    <a href="https://www.facebook.com/" target="_blank">Facebook</a>
+                    <a href="https://www.instagram.com/" target="_blank">instagram</a>
+                    <a href="https://www.youtube.com/" target="_blank">YouTube</a>
+                </div>
+
+
+            </div>
+
+            <h1 class="credit">Created by Sreyanth👨🏼‍💻</h1>
+
+        </section>
+
+        <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
+        <script src="js/script.js"></script>
+
+</body>
+
+</html>
